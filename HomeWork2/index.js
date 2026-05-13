@@ -45,7 +45,11 @@ app.post("/buy", async (req, res) => {
     }
 });
 
-app.post("/restock", (req, res) => {});
+app.post("/restock", (req, res) => {
+    const quantity = req.body.quantity || 1;
+    product.stock += quantity;
+    res.json({ message: "Restock successful", stock: product.stock });
+});
 
 
 app.listen(3000, () => {
